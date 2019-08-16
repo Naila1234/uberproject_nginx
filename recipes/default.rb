@@ -9,6 +9,10 @@
 
 package 'nginx'
 
+apt_update 'update_sources' do
+  action :update
+end
+
 service 'nginx' do
   action [:enable, :start]
 end

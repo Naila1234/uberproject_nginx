@@ -27,5 +27,13 @@ describe 'nginx::default' do
     it 'should enable the nginx service' do
       expect(chef_run).to enable_service 'nginx'
     end
+
+    it 'runs apt get update' do
+      expect(chef_run).to update_apt_update 'update_sources'
+    end
+
+    it 'should create a proxy.conf template in /etc/nginx/sites-available' do
+      expect(chef_run).to create_template('/etc/nginx/sites-available/proxy.conf').with_variables(proxy_port: 3000)
+    end
   end
 end
