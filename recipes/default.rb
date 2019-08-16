@@ -3,17 +3,12 @@
 # Recipe:: default
 #
 # Copyright:: 2019, The Authors, All Rights Reserved.
-apt_update 'update_sources' do
-  action :update
-end
-
-include_recipe 'apt'
-#include_recipe 'nodejs'
-
-nodejs_npm 'pm2'
+# apt_update 'update_sources' do
+#   action :update
+# end
 
 package 'nginx'
-#package 'nodejs'
+
 service 'nginx' do
   action [:enable, :start]
 end

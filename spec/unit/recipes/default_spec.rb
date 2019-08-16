@@ -15,15 +15,17 @@ describe 'nginx::default' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
-  end
 
-  context 'When all attributes are default, on CentOS 7' do
-    # for a complete list of available platforms and versions see:
-    # https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
-    platform 'centos', '7'
+    it 'should install package nginx' do
+      expect(chef_run).to install_package 'nginx'
+    end
 
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
+    it 'should start the nginx service' do
+      expect(chef_run).to start_service 'nginx'
+    end
+
+    it 'should enable the nginx service' do
+      expect(chef_run).to enable_service 'nginx'
     end
   end
 end
