@@ -6,11 +6,12 @@
 # apt_update 'update_sources' do
 #   action :update
 # end
-
-package 'nginx'
-
 apt_update 'update_sources' do
   action :update
+end
+
+package 'nginx' do
+  action :install
 end
 
 service 'nginx' do
